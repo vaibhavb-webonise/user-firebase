@@ -1,6 +1,12 @@
 import { ADD_USER, DELETE_USER } from './user-types';
 
-const initialState = [];
+const initialState = [
+  {
+    name: 'vaibhav',
+    village: 'baramati',
+    contact: 'bagaderonit@gmail.com',
+  },
+];
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
