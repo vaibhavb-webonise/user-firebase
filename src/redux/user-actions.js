@@ -5,9 +5,9 @@ const addUser = (user) => ({
   payload: user,
 });
 
-const deleteUser = (user) => ({
+const deleteUser = (userId) => ({
   type: DELETE_USER,
-  payload: user,
+  payload: userId,
 });
 
 export { addUser, deleteUser };
