@@ -7,7 +7,7 @@ const userReducer = (state = initialState, action) => {
     case ADD_USER:
       return [...state, action.payload];
     case DELETE_USER: {
-      const filteredArray = state.filter((user) => user.id != action.payload);
+      const filteredArray = state.filter((user) => user.id !== action.payload);
       return filteredArray;
     }
     default:
