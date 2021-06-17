@@ -1,1 +1,1 @@
-export { ADD_USER, DELETE_USER } from './user-types';
+export { setUser, deleteUser } from './user-actions';

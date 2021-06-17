@@ -1,10 +1,11 @@
-import { ADD_USER, DELETE_USER } from './user-types';
+import { SET_USER, DELETE_USER } from './user-types';
 
 const initialState = [];
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_USER:
+    case SET_USER:
+      console.log('set user running');
       return [...state, action.payload];
     case DELETE_USER: {
       const filteredArray = state.filter((user) => user.id !== action.payload);
