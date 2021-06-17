@@ -8,8 +8,10 @@ import {
 import { connect } from 'react-redux';
 import { useFormik } from 'formik';
 import React from 'react';
-import { addUser } from '../redux/user-actions';
+import { setUser } from '../redux/user-actions';
 import '../style/form.css';
+import { db } from '../style/firebase';
+import firebase from 'firebase';
 
 const initialValues = {
   name: '',
@@ -17,22 +19,21 @@ const initialValues = {
   contact: '',
 };
 
-const onSubmit = (e) => {
-  e.preventDefault();
-  console.log('this is the running onsubmit');
-};
-
 function UserForm(props) {
   const formik = useFormik({
     initialValues: initialValues,
-    onSubmit: onSubmit,
   });
 
-  console.log('the state is props==>', props.user);
+  const addUserToDB = (user) => {
+    db.collection('user').add({
+      userDetails: user,
+      timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+  };
 
   const { name, village, contact } = formik.values;
   return (
-    <>
+    <div>
       <form className="form">
         <FormControl>
           <InputLabel className="inputs" htmlFor="name">
@@ -84,21 +85,25 @@ function UserForm(props) {
           color="primary"
           variant="contained"
           disabled={!(name && village && contact)}
+          onClick={(e) => {
+            e.preventDefault();
+            addUserToDB(formik.values);
+          }}
         >
           Add To Records
         </Button>
       </form>
-    </>
+    </div>
   );
 }
 
 const mapStateToProps = (state) => {
-  return { user: state };
+  return { users: state };
 };
 
 const mapDisptachToProps = (dispatch) => {
   return {
-    addUser: (user) => dispatch(addUser(user)),
+    setUser: (user) => dispatch(setUser(user)),
   };
 };
 export default connect(mapStateToProps, mapDisptachToProps)(UserForm);

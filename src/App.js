@@ -1,6 +1,7 @@
 import { Provider } from 'react-redux';
 import './App.css';
 import UserForm from './components/User-Form';
+import Users from './components/Users';
 import { store } from './redux/store';
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <header className="App-header">
         <Provider store={store}>
           <UserForm />
+          <Users />
         </Provider>
       </header>
     </div>
@@ -15,3 +17,4 @@ function App() {
 }
 
 export default App;
+               

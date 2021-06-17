@@ -1,8 +1,8 @@
-import { ADD_USER, DELETE_USER } from './user-types';
+import { SET_USER, DELETE_USER } from './user-types';
 
-const addUser = (user) => ({
-  type: ADD_USER,
-  payload: user,
+const setUser = (users) => ({
+  type: SET_USER,
+  payload: users,
 });
 
 const deleteUser = (userId) => ({
@@ -10,4 +10,4 @@ const deleteUser = (userId) => ({
   payload: userId,
 });
 
-export { addUser, deleteUser };
+export { setUser, deleteUser };
